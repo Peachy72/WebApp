@@ -33,34 +33,32 @@
         }
 
         .category {
-            background-color: green;
-            color: white;
-            border: 1px solid white;
+            background-color: lightblue;
+            border: none;
             padding: 10px;
             text-align: center;
-            margin: 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        .category img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .category:hover {
+            background-color: lightcyan;
         }
+
         #thumbnails {
             flex: 3;
             display: grid;
-            background: lightblue;
-            grid-template-columns: repeat(4, 1fr);
+            background: lightgray;
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding: 20px;
         }
 
         .thumbnail {
-            border: 1px solid white;
-            color: white;
-            background-color: green;
+            border: 1px solid gray;
             padding: 10px;
             text-align: center;
+            cursor: pointer;
         }
 
         .thumbnail img {
@@ -69,11 +67,12 @@
             object-fit: cover;
         }
 
-        #copyright {
+        #About {
             background-color: lightblue;
             color: white;
             text-align: center;
             padding: 10px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -85,26 +84,70 @@
 
     <div id="container">
         <div id="categories">
-            <div class="category"><img scr = "image1.jpg" alt = "Image 1"></div>
-            <div class="category"><img scr = "image2.jpg" alt = "Image 2"></div>
-            <div class="category"><img scr = "image3.jpg" alt = "Image 3"></div>
-            <div class="category"><img scr = "image4.jpg" alt = "Image 4"></div>
+            <!-- Add category links -->
+            <div class="category" id="category1">Category 1</div>
+            <div class="category" id="category2">Category 2</div>
+            <div class="category" id="category3">Category 3</div>
+            <div class="category" id="category4">Category 4</div>
         </div>
 
         <div id="thumbnails">
-            <div class="thumbnail"><img src="http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ" alt="Image 1"></div>
-            <div class="thumbnail"><img src="https://www.thesprucepets.com/thmb/17UY4UpiMekV7WpeXDziXsnt7q4=/1646x0/filters:no_upscale():strip_icc()/GettyImages-145577979-d97e955b5d8043fd96747447451f78b7.jpg" alt="Image 2"></div>
-            <div class="thumbnail"><img src="https://i.kym-cdn.com/entries/icons/original/000/043/403/cover3.jpg" alt="Image 3"></div>
-            <div class="thumbnail"><img src="https://ih1.redbubble.net/image.3800727516.4531/pp,840x830-pad,1000x1000,f8f8f8.jpg" alt="Image 4"></div>
-            <div class="thumbnail"><img src="https://preview.redd.it/r3lcc7gf64791.png?width=540&format=png&auto=webp&s=9d32ec46f884486fd59dfd01453bf5d07bf30d75" alt="Image 5"></div>
-            <div class="thumbnail"><img src="https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg" alt="Image 6"></div>
-            <div class="thumbnail"><img src="image7.jpg" alt="Image 7"></div>
-            <div class="thumbnail"><img src="image8.jpg" alt="Image 8"></div>
+            <!-- Sample images displayed on the home screen -->
+            <div class="thumbnail">
+                <img src="http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ" alt="Sample Image 1">
+            </div>
+            <div class="thumbnail">
+                <img src="https://i.imgflip.com/1nstom.jpg?a469872" alt="Sample Image 2">
+            </div>
+            <div class="thumbnail">
+                <img src="https://i.imgflip.com/1nstom.jpg?a469872" alt="Sample Image 3">
+            </div>
+            <!-- Thumbnails for selected category will be dynamically added here -->
         </div>
+    </div>
 
-        <div id="copyright">
-            &copy; 2023 Categorized Photos.
-        </div>
+    <div id="About">
+        <a href="about.html">About</a>
+    </div>
+
+    <script>
+        const categoryLinks = document.querySelectorAll('.category');
+        const thumbnailsContainer = document.getElementById('thumbnails');
+
+        const imageSets = [
+            //      // Array of image URLs for each category
+            // ['image1_url', 'image2_url', 'image3_url'],
+            // ['image4_url', 'image5_url', 'image6_url'],
+            // ['image7_url', 'image8_url', 'image9_url'],
+            // ['image10_url', 'image11_url', 'image12_url']
+            ['http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ', 'https://ih1.redbubble.net/image.3800727516.4531/pp,840x830-pad,1000x1000,f8f8f8.jpg', 'https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg'],
+            ['https://i.imgflip.com/1nstom.jpg?a469872', 'https://www.thesprucepets.com/thmb/17UY4UpiMekV7WpeXDziXsnt7q4=/1646x0/filters:no_upscale():strip_icc()/GettyImages-145577979-d97e955b5d8043fd96747447451f78b7.jpg', 'https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg'],
+            ['https://i.kym-cdn.com/entries/icons/original/000/043/403/cover3.jpg', 'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ', 'https://i.imgflip.com/1nstom.jpg?a469872'],
+            ['https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg', 'https://i.imgflip.com/1nstom.jpg?a469872', 'https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg']
+        ];
+
+        categoryLinks.forEach((link, index) => {
+            link.addEventListener('click', () => {
+                // Clear existing thumbnails
+                thumbnailsContainer.innerHTML = '';
+
+                // Add thumbnails for the selected category
+                for (let i = 0; i < imageSets[index].length; i++) {
+                    const imageUrl = imageSets[index][i];
+                    thumbnailsContainer.innerHTML += `
+                    <div class="thumbnail">
+                        <img src="${imageUrl}" alt="Image ${i + 1}" onclick="openImage('${imageUrl}')">
+                    </div>
+                `;
+                }
+            });
+        });
+
+        function openImage(imageUrl) {
+            // Open a pop-up window with the full-size image
+            window.open(imageUrl, 'Image Pop-up', 'width=800,height=600,resizable=yes,scrollbars=yes');
+        }
+    </script>
 </body>
 
 </html>
