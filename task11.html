@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorized Photos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #banner {
+            background-color: lightblue;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #container {
+            display: flex;
+            background-color: white;
+            margin: 10px;
+        }
+
+        #categories {
+            flex: 1;
+            background-color: lightblue;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .category {
+            background-color: green;
+            color: white;
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .category img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #thumbnails {
+            flex: 3;
+            display: grid;
+            background: lightblue;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .thumbnail {
+            border: 1px solid white;
+            color: white;
+            background-color: green;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #copyright {
+            background-color: lightblue;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="banner">
+        <h1>Categorized Photos</h1>
+    </div>
+
+    <div id="container">
+        <div id="categories">
+            <div class="category"><img scr = "image1.jpg" alt = "Image 1"></div>
+            <div class="category"><img scr = "image2.jpg" alt = "Image 2"></div>
+            <div class="category"><img scr = "image3.jpg" alt = "Image 3"></div>
+            <div class="category"><img scr = "image4.jpg" alt = "Image 4"></div>
+        </div>
+
+        <div id="thumbnails">
+            <div class="thumbnail"><img src="http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ" alt="Image 1"></div>
+            <div class="thumbnail"><img src="https://www.thesprucepets.com/thmb/17UY4UpiMekV7WpeXDziXsnt7q4=/1646x0/filters:no_upscale():strip_icc()/GettyImages-145577979-d97e955b5d8043fd96747447451f78b7.jpg" alt="Image 2"></div>
+            <div class="thumbnail"><img src="https://i.kym-cdn.com/entries/icons/original/000/043/403/cover3.jpg" alt="Image 3"></div>
+            <div class="thumbnail"><img src="https://ih1.redbubble.net/image.3800727516.4531/pp,840x830-pad,1000x1000,f8f8f8.jpg" alt="Image 4"></div>
+            <div class="thumbnail"><img src="https://preview.redd.it/r3lcc7gf64791.png?width=540&format=png&auto=webp&s=9d32ec46f884486fd59dfd01453bf5d07bf30d75" alt="Image 5"></div>
+            <div class="thumbnail"><img src="https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg" alt="Image 6"></div>
+            <div class="thumbnail"><img src="image7.jpg" alt="Image 7"></div>
+            <div class="thumbnail"><img src="image8.jpg" alt="Image 8"></div>
+        </div>
+
+        <div id="copyright">
+            &copy; 2023 Categorized Photos.
+        </div>
+</body>
+
+</html>
