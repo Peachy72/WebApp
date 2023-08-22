@@ -1,0 +1,24 @@
+{
+    "name": "webapp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "prettier": "prettier . --write --tab-width 4",
+        "stylelint": "stylelint **/*.* --fix",
+        "lint": "pnpm run prettier && pnpm run stylelint",
+        "dev": "live-server --port=8080 --host=localhost --no-browser --entry-file=main.html"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "postcss-html": "^1.5.0",
+        "prettier": "3.0.2",
+        "stylelint": "^15.10.3",
+        "stylelint-config-standard": "^34.0.0"
+    },
+    "dependencies": {
+        "live-server": "^1.2.2",
+        "stylelint-order": "^6.0.3"
+    }
+}
