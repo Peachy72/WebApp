@@ -1,153 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Categorized Photos</title>
+        <style>
+            :root {
+                --bg-color: #5b9bd5;
+                --margin: 20px;
+                --padding: 20px;
+            }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categorized Photos</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
 
-        #banner {
-            background-color: lightblue;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+            #banner {
+                /* set the inner image to fit-cover */
+                background: url("/assets/bliss.jpg") no-repeat center center;
+                background-size: cover;
+                height: 200px;
+            }
 
-        #container {
-            display: flex;
-            background-color: white;
-            margin: 10px;
-        }
+            #container {
+                background-color: white;
+                display: flex;
+                margin: var(--margin) 0;
+            }
 
-        #categories {
-            flex: 1;
-            background-color: lightblue;
-            padding: 10px;
-            margin: 10px;
-        }
+            #categories {
+                background-color: var(--bg-color);
+                flex: 1;
+                margin-right: var(--margin);
+                padding: 0 var(--padding);
+            }
 
-        .category {
-            background-color: lightblue;
-            border: none;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+            .category,
+            .about {
+                background-color: #538135;
+                border: 1px solid white;
+                color: white;
+                cursor: pointer;
+                margin: var(--margin) 0;
+                padding: var(--padding) 0;
+                text-align: center;
+                transition: transform 0.3s ease;
+            }
 
-        .category:hover {
-            background-color: lightcyan;
-        }
+            .about {
+                display: block;
+            }
 
-        #thumbnails {
-            flex: 3;
-            display: grid;
-            background: lightgray;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 20px;
-        }
+            .about a {
+                color: white;
+            }
 
-        .thumbnail {
-            border: 1px solid gray;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-        }
+            .category:hover,
+            .about:hover {
+                transform: scale(1.02);
+            }
 
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+            #thumbnails {
+                background: var(--bg-color);
+                display: grid;
+                flex: 3;
+                gap: 20px;
+                grid-template-columns: repeat(3, 1fr);
+                padding: 20px;
+            }
 
-        #About {
-            background-color: lightblue;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-        }
-    </style>
-</head>
+            .thumbnail {
+                border: 1px solid gray;
+                cursor: pointer;
 
-<body>
-    <div id="banner">
-        <h1>Categorized Photos</h1>
-    </div>
+                /* padding: 10px; */
+                text-align: center;
+            }
 
-    <div id="container">
-        <div id="categories">
-            <!-- Add category links -->
-            <div class="category" id="category1">Category 1</div>
-            <div class="category" id="category2">Category 2</div>
-            <div class="category" id="category3">Category 3</div>
-            <div class="category" id="category4">Category 4</div>
+            .thumbnail img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            #about {
+                background-color: var(--bg-color);
+                color: white;
+                cursor: pointer;
+                padding: 10px;
+                text-align: center;
+            }
+
+            #about a {
+                color: white;
+                font-size: large;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="banner"></div>
+
+        <div id="container">
+            <div id="categories">
+                <div class="category">Category 1</div>
+                <div class="category">Category 2</div>
+                <div class="category">Category 3</div>
+                <div class="category">Category 4</div>
+                <a href="/about.html" class="about category">About</a>
+            </div>
+
+            <div id="thumbnails">
+                <!-- Sample images displayed on the home screen -->
+                <div class="thumbnail">
+                    <img
+                        src="http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ"
+                        alt="Sample Image 1"
+                    />
+                </div>
+                <div class="thumbnail">
+                    <img
+                        src="https://i.imgflip.com/1nstom.jpg?a469872"
+                        alt="Sample Image 2"
+                    />
+                </div>
+                <div class="thumbnail">
+                    <img
+                        src="https://i.imgflip.com/1nstom.jpg?a469872"
+                        alt="Sample Image 3"
+                    />
+                </div>
+                <!-- Thumbnails for selected category will be dynamically added here -->
+            </div>
         </div>
 
-        <div id="thumbnails">
-            <!-- Sample images displayed on the home screen -->
-            <div class="thumbnail">
-                <img src="http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ" alt="Sample Image 1">
-            </div>
-            <div class="thumbnail">
-                <img src="https://i.imgflip.com/1nstom.jpg?a469872" alt="Sample Image 2">
-            </div>
-            <div class="thumbnail">
-                <img src="https://i.imgflip.com/1nstom.jpg?a469872" alt="Sample Image 3">
-            </div>
-            <!-- Thumbnails for selected category will be dynamically added here -->
+        <div id="about">
+            <a href="../about.html">Copyright</a>
         </div>
-    </div>
 
-    <div id="About">
-        <a href="../about.html">About</a>
-    </div>
+        <script>
+            const categoryLinks = document.querySelectorAll(".category");
+            const thumbnailsContainer = document.getElementById("thumbnails");
 
-    <script>
-        const categoryLinks = document.querySelectorAll('.category');
-        const thumbnailsContainer = document.getElementById('thumbnails');
+            const imageSets = [
+                [
+                    "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ",
+                    "https://ih1.redbubble.net/image.3800727516.4531/pp,840x830-pad,1000x1000,f8f8f8.jpg",
+                    "https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg",
+                ],
+                [
+                    "https://i.imgflip.com/1nstom.jpg?a469872",
+                    "https://www.thesprucepets.com/thmb/17UY4UpiMekV7WpeXDziXsnt7q4=/1646x0/filters:no_upscale():strip_icc()/GettyImages-145577979-d97e955b5d8043fd96747447451f78b7.jpg",
+                    "https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg",
+                ],
+                [
+                    "https://i.kym-cdn.com/entries/icons/original/000/043/403/cover3.jpg",
+                    "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ",
+                    "https://i.imgflip.com/1nstom.jpg?a469872",
+                ],
+                [
+                    "https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg",
+                    "https://i.imgflip.com/1nstom.jpg?a469872",
+                    "https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg",
+                ],
+            ];
 
-        const imageSets = [
-            //      // Array of image URLs for each category
-            // ['image1_url', 'image2_url', 'image3_url'],
-            // ['image4_url', 'image5_url', 'image6_url'],
-            // ['image7_url', 'image8_url', 'image9_url'],
-            // ['image10_url', 'image11_url', 'image12_url']
-            ['http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ', 'https://ih1.redbubble.net/image.3800727516.4531/pp,840x830-pad,1000x1000,f8f8f8.jpg', 'https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg'],
-            ['https://i.imgflip.com/1nstom.jpg?a469872', 'https://www.thesprucepets.com/thmb/17UY4UpiMekV7WpeXDziXsnt7q4=/1646x0/filters:no_upscale():strip_icc()/GettyImages-145577979-d97e955b5d8043fd96747447451f78b7.jpg', 'https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg'],
-            ['https://i.kym-cdn.com/entries/icons/original/000/043/403/cover3.jpg', 'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ', 'https://i.imgflip.com/1nstom.jpg?a469872'],
-            ['https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg', 'https://i.imgflip.com/1nstom.jpg?a469872', 'https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg']
-        ];
-
-        categoryLinks.forEach((link, index) => {
-            link.addEventListener('click', () => {
-                // Clear existing thumbnails
-                thumbnailsContainer.innerHTML = '';
-
-                // Add thumbnails for the selected category
-                for (let i = 0; i < imageSets[index].length; i++) {
-                    const imageUrl = imageSets[index][i];
-                    thumbnailsContainer.innerHTML += `
+            categoryLinks.forEach((link, index) => {
+                link.addEventListener("click", () => {
+                    thumbnailsContainer.innerHTML = "";
+                    for (let i = 0; i < imageSets[index].length; i++) {
+                        const imageUrl = imageSets[index][i];
+                        thumbnailsContainer.innerHTML += `
                     <div class="thumbnail">
-                        <img src="${imageUrl}" alt="Image ${i + 1}" onclick="openImage('${imageUrl}')">
+                        <img src="${imageUrl}" alt="Image ${
+                            i + 1
+                        }" onclick="openImage('${imageUrl}')">
                     </div>
                 `;
-                }
+                    }
+                });
             });
-        });
 
-        function openImage(imageUrl) {
-            // Open a pop-up window with the full-size image
-            window.open(imageUrl, 'Image Pop-up', 'width=800,height=600,resizable=yes,scrollbars=yes');
-        }
-    </script>
-</body>
-
+            function openImage(imageUrl) {
+                window.open(
+                    imageUrl,
+                    "Image Pop-up",
+                    "width=800,height=600,resizable=yes,scrollbars=yes",
+                );
+            }
+        </script>
+    </body>
 </html>
