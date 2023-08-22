@@ -1,37 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
+            background-color: #F3FDE8;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
-        .column {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0 20px;
-        }
-
-        a {
-            text-decoration: none;
-        }
-        a:visited {
-            color: red;
-        }
-        a:hover {
-            color: green;
-        }
-        
-        body {
-            background-color:#F3FDE8 ;
-        }
-        ul {
+        ul.nav-bar {
             list-style-type: none;
             margin: 0;
             padding: 0;
@@ -39,7 +16,7 @@
             background-color: #A8DF8E;
         }
 
-        li {
+        li.nav-bar {
             float: left;
         }
 
@@ -88,18 +65,79 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
+        .favourite-list {
+            border: 1px solid black;
+            margin: 12%;
+            width: 25%;
+            float: left;
+            height: 200px;
+            text-align: center;
+        }
     </style>
-    
+    <style>
+        .column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+        }
+
+        a.page-link {
+            text-decoration: none;
+        }
+
+        a.page-link:visited {
+            color: red;
+        }
+
+        a.page-link:hover {
+            color: green;
+        }
+    </style>
+    <title>Task 8</title>
 </head>
+
 <body>
-    <div class="column">
-        <a href="task5.html">Page 1 (task5)</a><br>
+    <ul class="nav-bar">
+        <li class="nav-bar"><a href="../main.html">Home</a></li>
+        <li class="nav-bar"><a href="../about.html">About</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Labwork 1</a>
+            <div class="dropdown-content">
+                <a href="task1.html">Task 1</a>
+                <a href="task2.html">Task 2</a>
+                <a href="task3.html">Task 3</a>
+                <a href="task4.html">Task 4</a>
+                <a href="task5.html">Task 5</a>
+                <a href="task6.html">Task 6</a>
+                <a href="task7.html">Task 7</a>
+                <a href="task8.html">Task 8</a>
+                <a href="task9.html">Task 9</a>
+                <a href="task10.html">Task 10</a>
+                <a href="task11.html">Task 11</a>
+            </div>
+        </li>
+    </ul>
+
+    <div style="height:600px; width: 90%; background-color: white; margin: auto; margin-top: 20px;">
+        <div class="column" style="padding: 50px;">
+            <a class="page-link" href="task5.html">Page 1 (task5)</a><br>
+        </div>
+        <div class="column" style="padding: 50px;">
+            <a class="page-link" href="task11.html">Page 2 (task11)</a><br>
+        </div>
+        <div class="column" style="padding: 50px;">
+            <a class="page-link" href="task11.html">Page 3</a><br>
+        </div>
     </div>
-    <div class="column">
-        <a href="task11.html">Page 2 (task11)</a><br>
-    </div>
-    <div class="column">
-        <a href="task11.html">Page 3</a><br>
+    <div style="text-align: center;">
+        <h2 style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 20px; font-weight: 100;">Task 8</h2>
+        <a style="float: right;" href="task9.html"><img
+                src="https://img.icons8.com/ios/50/000000/circled-chevron-right.png" /></a>
+        <a style="float: left;" ; href="task7.html"><img
+                src="https://img.icons8.com/ios/50/000000/circled-chevron-left.png" /></a>
     </div>
 </body>
+
 </html>

@@ -1,10 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <style>
+        body {
+            background-color: #F3FDE8;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        ul.nav-bar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #A8DF8E;
+        }
+
+        li.nav-bar {
+            float: left;
+        }
+
+        li a,
+        .dropbtn {
+            display: inline-block;
+            color: #F3FDE8;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 20px;
+        }
+
+        li a:hover,
+        .dropdown:hover .dropbtn {
+            background-color: #FFBFBF;
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #FFE5E5;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .favourite-list {
+            border: 1px solid black;
+            margin: 12%;
+            width: 25%;
+            float: left;
+            height: 200px;
+            text-align: center;
+        }
+    </style>
     <style>
         * {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -39,31 +109,62 @@
             box-shadow: .5rem .5rem .5rem rgba(0, 0, 0, 0.1);
         }
     </style>
+    <title>Task 9</title>
 </head>
 
 <body>
-    <table>
-        <tr>
-            <th>Subject</th>
-            <th>ECTS</th>
-        </tr>
-        <tr>
-            <td>Math</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>Physics</td>
-            <td>5</td>
-        </tr>
-        <tr>
-            <td>Chemistry</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>English</td>
-            <td>3</td>
-        </tr>
-    </table>
+    <ul class="nav-bar">
+        <li class="nav-bar"><a href="../main.html">Home</a></li>
+        <li class="nav-bar"><a href="../about.html">About</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Labwork 1</a>
+            <div class="dropdown-content">
+                <a href="task1.html">Task 1</a>
+                <a href="task2.html">Task 2</a>
+                <a href="task3.html">Task 3</a>
+                <a href="task4.html">Task 4</a>
+                <a href="task5.html">Task 5</a>
+                <a href="task6.html">Task 6</a>
+                <a href="task7.html">Task 7</a>
+                <a href="task8.html">Task 8</a>
+                <a href="task9.html">Task 9</a>
+                <a href="task10.html">Task 10</a>
+                <a href="task11.html">Task 11</a>
+            </div>
+        </li>
+    </ul>
+
+    <div style="height:600px; width: 90%; background-color: white; margin: auto; margin-top: 20px;">
+        <table style="margin: auto; padding-top: 90px;">
+            <tr>
+                <th>Subject</th>
+                <th>ECTS</th>
+            </tr>
+            <tr>
+                <td>Math</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Physics</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Chemistry</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>English</td>
+                <td>3</td>
+            </tr>
+        </table>
+    </div>
+    <div style="text-align: center;">
+        <h2 style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 20px; font-weight: 100;">Task 9</h2>
+        <a style="float: right;" href="task10.html"><img
+                src="https://img.icons8.com/ios/50/000000/circled-chevron-right.png" /></a>
+        <a style="float: left;" ; href="task8.html"><img
+                src="https://img.icons8.com/ios/50/000000/circled-chevron-left.png" /></a>
+    </div>
 </body>
 
 </html>
