@@ -15,6 +15,7 @@
     "dependencies": {
         "@prettier/plugin-pug": "^3.0.0",
         "@types/node": "^20.5.3",
+        "chokidar": "^3.5.3",
         "light-server": "^2.9.1",
         "postcss-html": "^1.5.0",
         "prettier": "3.0.2",
