@@ -10,12 +10,19 @@ head
             margin: 0;
             padding: 0;
         }
+
         #header {
             background-color: #a8df8e;
             color: white;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
+        #header a {
+            position: absolute;
+            left: 2rem;
+        }
+
         #content {
             max-width: 800px;
             margin: 20px auto;
@@ -23,14 +30,25 @@ head
             background-color: white;
             box-shadow: 0 0 5px black;
         }
+
         h1 {
             font-size: 24px;
             margin-bottom: 15px;
         }
+
         p {
             line-height: 1.6;
         }
+
+        #back-button {
+            padding: 0px;
+            display: absolute;
+        }
 #header
+    a(href="/")
+        img#back-button(
+            src="https://img.icons8.com/ios/50/000000/circled-chevron-left.png"
+        )
     h1 About Us
 #content
     h1 Group Members
