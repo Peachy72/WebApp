@@ -4,21 +4,30 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "prettier": "prettier . --write --tab-width 4",
-        "stylelint": "stylelint **/*.* --fix",
-        "lint": "pnpm run prettier && pnpm run stylelint",
-        "dev": "live-server --port=8080 --host=localhost --no-browser --entry-file=main.html"
+        "lint:prettier": "prettier . --write --tab-width 4",
+        "lint:prettier:pug": "prettier **/*.pug --write --tab-width 4 --plugin=@prettier/plugin-pug",
+        "lint:stylelint": "stylelint **/*.* --fix",
+        "lint": "pnpm lint:prettier && pnpm lint:prettier:pug && pnpm lint:stylelint",
+        "build": "pnpm lint && ts-node watch.ts --build",
+        "dev": "pnpm lint && ts-node watch.ts"
     },
     "author": "",
     "license": "ISC",
-    "devDependencies": {
+    "dependencies": {
+        "@prettier/plugin-pug": "^3.0.0",
+        "@types/node": "^20.5.3",
+        "light-server": "^2.9.1",
         "postcss-html": "^1.5.0",
         "prettier": "3.0.2",
+        "pug": "^3.0.2",
         "stylelint": "^15.10.3",
-        "stylelint-config-standard": "^34.0.0"
+        "stylelint-config-standard": "^34.0.0",
+        "stylelint-order": "^6.0.3",
+        "ts-node": "^10.9.1",
+        "tsc": "^2.0.4",
+        "typescript": "^5.1.6"
     },
-    "dependencies": {
-        "live-server": "^1.2.2",
-        "stylelint-order": "^6.0.3"
+    "devDependencies": {
+        "@types/pug": "^2.0.6"
     }
 }
