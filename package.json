@@ -4,12 +4,12 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "lint:prettier": "prettier . --write --tab-width 4",
-        "lint:prettier:pug": "prettier **/*.pug --write --tab-width 4 --plugin=@prettier/plugin-pug",
-        "lint:stylelint": "stylelint **/*.* --fix",
+        "lint:prettier": "prettier src/ --write --tab-width 4",
+        "lint:prettier:pug": "prettier src/**/*.pug --write --tab-width 4 --plugin=@prettier/plugin-pug",
+        "lint:stylelint": "stylelint src/**/*.* --fix",
         "lint": "pnpm lint:prettier && pnpm lint:prettier:pug && pnpm lint:stylelint",
         "build": "pnpm lint && ts-node watch.ts --build",
-        "dev": "pnpm lint && ts-node watch.ts"
+        "dev": "ts-node watch.ts"
     },
     "author": "",
     "license": "ISC",
