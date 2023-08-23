@@ -1,11 +1,19 @@
 import pug from "pug";
 import fs from "fs";
 import { spawn } from "child_process";
+import chokidar from "chokidar";
+import path from "path";
 
 const PUG_FILES = {
     "src/index.pug": "dist/index.html",
     "src/about.pug": "dist/about.html",
 };
+
+const srcDir = "src/";
+const distDir = "dist/";
+
+let last_timestamp = "";
+const norm = (in_path: string) => in_path.replace(/\\/g, "/");
 
 enum EventType {
     NORMAL,
@@ -13,24 +21,33 @@ enum EventType {
     ERROR,
 }
 
-const listFiles = (dir: string) => {
+const listFiles = (
+    dir: string,
+    ignored_extensions: string[] = [],
+    _original_dir: string = dir,
+) => {
     const files: string[] = [];
-    dir = dir.startsWith("./") ? dir.slice(2) : dir;
-    dir = dir.endsWith("/") ? dir.slice(0, -1) : dir;
+    dir = norm(dir);
     for (const item of fs.readdirSync(dir)) {
         if (item in [".git", "node_modules", ".DS_Store"]) continue;
-        const path = `${dir}/${item}`;
-        if (fs.statSync(path).isDirectory()) files.push(...listFiles(path));
-        else files.push(path);
+        if (ignored_extensions.includes(item.split(".").pop() as string))
+            continue;
+        const currPath = path.join(dir, item);
+        if (fs.statSync(currPath).isDirectory())
+            files.push(
+                ...listFiles(currPath, ignored_extensions, _original_dir),
+            );
+        else files.push(norm(currPath));
     }
-    return files.map((file) => (file.startsWith("./") ? file.slice(2) : file));
+    return files.map((file) => {
+        file = file.startsWith(_original_dir)
+            ? norm(path.join(...file.split("/").slice(1)))
+            : file;
+        return norm(file);
+    });
 };
 
-const printMsg = (
-    msg: string,
-    type: EventType = EventType.NORMAL,
-    last_timestamp: string = "",
-) => {
+const printMsg = (msg: string, type: EventType = EventType.NORMAL) => {
     let timestamp = new Date()
         .toLocaleTimeString("en-US", {
             hour12: true,
@@ -58,84 +75,69 @@ const printMsg = (
             console.log(`${timestamp_print} ${msg}`);
             break;
     }
-    return timestamp;
+    last_timestamp = timestamp;
 };
 
-const build_pug = (last_timestamp: string = "") => {
+const customCopy = (src: string, dest: string) => {
+    src = norm(src);
+    dest = norm(dest);
+    if (dest.split("/").length > 2) {
+        const subfolder = dest.slice(0, dest.lastIndexOf("/"));
+        if (!fs.existsSync(subfolder)) fs.mkdirSync(subfolder);
+    }
+    fs.copyFileSync(src, dest);
+};
+
+const build_pug = () => {
     for (const [src, dest] of Object.entries(PUG_FILES)) {
-        last_timestamp = printMsg(
-            `Rebuilding ${src} to ${dest}`,
-            EventType.NORMAL,
-            last_timestamp,
-        );
+        printMsg(`Rebuilding ${src} to ${dest}`, EventType.NORMAL);
         const html = pug.renderFile(src);
         fs.writeFileSync(dest, html);
     }
-    return last_timestamp;
 };
 
-const build_copy = (last_timestamp: string = "") => {
-    for (let file of listFiles("src")) {
-        if ((file as string).endsWith(".pug")) continue;
-        file = file.replace("src/", "");
-        last_timestamp = printMsg(
-            `Copying ${file} to dist/`,
-            EventType.NORMAL,
-            last_timestamp,
-        );
-        if (file.includes("/")) {
-            const subfolder = file.slice(0, file.lastIndexOf("/"));
-            if (!fs.existsSync(`dist/${subfolder}`)) {
-                fs.mkdirSync(`dist/${subfolder}`, { recursive: true });
-            }
-        }
-        fs.copyFileSync(`src/${file}`, `dist/${file}`);
+const build_copy = () => {
+    for (let file of listFiles(srcDir, ["pug"])) {
+        printMsg(`Copying ${file} to ${distDir}`, EventType.NORMAL);
+        customCopy(path.join(srcDir, file), path.join(distDir, file));
     }
-    return last_timestamp;
 };
 
 const build = () => {
-    let last_timestamp = "";
     if (!fs.existsSync("dist")) fs.mkdirSync("dist");
-    last_timestamp = build_pug(last_timestamp);
-    last_timestamp = build_copy(last_timestamp);
+    build_pug();
+    build_copy();
 };
 
-const watch_pug = (last_timestamp: string) => {
-    for (const [src, dest] of Object.entries(PUG_FILES)) {
-        fs.watchFile(src, () => {
-            last_timestamp = printMsg(
-                `Rebuilding ${src} to ${dest}`,
+const watch = () => {
+    const watcher = chokidar.watch(srcDir);
+    const helper = (path: string) => {
+        if (path.endsWith(".pug")) {
+            printMsg(
+                `Rebuilding ${path} to ${path.replace(srcDir, distDir)}`,
                 EventType.NORMAL,
-                last_timestamp,
             );
-            const html = pug.renderFile(src);
-            fs.writeFileSync(dest, html);
-        });
-    }
-    return last_timestamp;
-};
-
-const watch_copy = (last_timestamp: string) => {
-    for (let file of listFiles("src")) {
-        if ((file as string).endsWith(".pug")) continue;
-        file = file.replace("src/", "");
-        fs.watchFile(`src/${file}`, () => {
-            last_timestamp = printMsg(
-                `Copying src/${file} to dist/${file}`,
-                EventType.NORMAL,
-                last_timestamp,
-            );
-            if (file.includes("/")) {
-                const subfolder = file.slice(0, file.lastIndexOf("/"));
-                if (!fs.existsSync(`dist/${subfolder}`)) {
-                    fs.mkdirSync(`dist/${subfolder}`, { recursive: true });
-                }
-            }
-            fs.copyFileSync(`src/${file}`, `dist/${file}`);
-        });
-    }
-    return last_timestamp;
+            build_pug();
+        } else {
+            const dist_path = path.replace(srcDir, distDir);
+            printMsg(`Copying ${path} to dist/${path}`, EventType.NORMAL);
+            customCopy(path, dist_path);
+        }
+    };
+    watcher.on("add", (path) => helper(path));
+    watcher.on("change", (path) => helper(path));
+    watcher.on("unlink", (path) => {
+        printMsg(`Removing ${path.replace(srcDir, distDir)}`, EventType.NORMAL);
+        fs.rmSync(path.replace(srcDir, distDir));
+    });
+    watcher.on("addDir", (path) => {
+        printMsg(
+            `Creating directory ${path.replace(srcDir, distDir)}`,
+            EventType.NORMAL,
+        );
+        if (!fs.existsSync(path.replace(srcDir, distDir)))
+            fs.mkdirSync(path.replace(srcDir, distDir));
+    });
 };
 
 const main = () => {
@@ -144,20 +146,19 @@ const main = () => {
     const server = spawn("pnpm", [
         "light-server",
         "-s",
-        "dist/",
+        distDir,
         "-w",
         "dist/**",
     ]);
-    let last_timestamp = "";
     server.stdout.on("data", (data) => {
         for (const line of data.toString().split("\n")) {
-            last_timestamp = printMsg(line, EventType.NORMAL, last_timestamp);
+            printMsg(line, EventType.NORMAL);
         }
     });
     server.stderr.on("data", (data) => {
         const lines = data.toString().split("\n");
         for (const line of lines) {
-            last_timestamp = printMsg(line, EventType.ERROR, last_timestamp);
+            printMsg(line, EventType.ERROR);
         }
     });
     server.on("close", (code) => {
@@ -165,8 +166,8 @@ const main = () => {
     });
 
     printMsg("Watching for changes...", EventType.NORMAL);
-    last_timestamp = watch_pug(last_timestamp);
-    last_timestamp = watch_copy(last_timestamp);
+
+    watch();
 };
 
 if (process.argv.length == 2) {
