@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Categorized Photos</title>
+        <title>Task 11</title>
         <style>
             :root {
                 --bg-color: #5b9bd5;
@@ -51,6 +51,7 @@
 
             .about {
                 display: block;
+                text-decoration: none;
             }
 
             .about a {
@@ -67,15 +68,15 @@
                 display: grid;
                 flex: 3;
                 gap: 20px;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(4, 2fr);
                 padding: 20px;
             }
 
             .thumbnail {
+                width: 200px;
+                height: 200px;
                 border: 1px solid gray;
                 cursor: pointer;
-
-                /* padding: 10px; */
                 text-align: center;
             }
 
@@ -106,32 +107,37 @@
 
         <div id="container">
             <div id="categories">
-                <div class="category">Category 1</div>
-                <div class="category">Category 2</div>
-                <div class="category">Category 3</div>
-                <div class="category">Category 4</div>
+                <div class="category">Cat</div>
+                <div class="category">Dog</div>
+                <div class="category">Food</div>
                 <a href="/about.html" class="about category">About</a>
             </div>
 
             <div id="thumbnails">
                 <!-- Sample images displayed on the home screen -->
                 <div class="thumbnail">
-                    <img
-                        src="http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ"
-                        alt="Sample Image 1"
-                    />
+                    <img src="img_lab1/cat.jpeg" alt="Sample Image 1" />
                 </div>
                 <div class="thumbnail">
-                    <img
-                        src="https://i.imgflip.com/1nstom.jpg?a469872"
-                        alt="Sample Image 2"
-                    />
+                    <img src="img_lab1/cat.jpeg" alt="Sample Image 2" />
                 </div>
                 <div class="thumbnail">
-                    <img
-                        src="https://i.imgflip.com/1nstom.jpg?a469872"
-                        alt="Sample Image 3"
-                    />
+                    <img src="img_lab1/cat.jpeg" alt="Sample Image 3" />
+                </div>
+                <div class="thumbnail">
+                    <img src="img_lab1/cat.jpeg" alt="Sample Image 3" />
+                </div>
+                <div class="thumbnail">
+                    <img src="img_lab1/cat.jpeg" alt="Sample Image 3" />
+                </div>
+                <div class="thumbnail">
+                    <img src="img_lab1/cat.jpeg" alt="Sample Image 3" />
+                </div>
+                <div class="thumbnail">
+                    <img src="img_lab1/cat.jpeg" alt="Sample Image 3" />
+                </div>
+                <div class="thumbnail">
+                    <img src="img_lab1/cat.jpeg" alt="Sample Image 3" />
                 </div>
                 <!-- Thumbnails for selected category will be dynamically added here -->
             </div>
@@ -146,33 +152,16 @@
             const thumbnailsContainer = document.getElementById("thumbnails");
 
             const imageSets = [
-                [
-                    "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ",
-                    "https://ih1.redbubble.net/image.3800727516.4531/pp,840x830-pad,1000x1000,f8f8f8.jpg",
-                    "https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg",
-                ],
-                [
-                    "https://i.imgflip.com/1nstom.jpg?a469872",
-                    "https://www.thesprucepets.com/thmb/17UY4UpiMekV7WpeXDziXsnt7q4=/1646x0/filters:no_upscale():strip_icc()/GettyImages-145577979-d97e955b5d8043fd96747447451f78b7.jpg",
-                    "https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg",
-                ],
-                [
-                    "https://i.kym-cdn.com/entries/icons/original/000/043/403/cover3.jpg",
-                    "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQhpP0fw9RfCe8qs9yqxfOIniMOm-x9WgRHwK_g1vndRZd5VP2qUBiFdFfTQFKs-CO0cjGhL73BK9JfLZPE5nQ",
-                    "https://i.imgflip.com/1nstom.jpg?a469872",
-                ],
-                [
-                    "https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg",
-                    "https://i.imgflip.com/1nstom.jpg?a469872",
-                    "https://i.pinimg.com/236x/ee/70/84/ee70846bada75caa7dd56e06c4699b9d.jpg",
-                ],
+                ["img_lab1/cat.jpeg"],
+                ["img_lab1/dog.jpeg"],
+                ["img_lab1/food.jpeg"],
             ];
 
             categoryLinks.forEach((link, index) => {
                 link.addEventListener("click", () => {
                     thumbnailsContainer.innerHTML = "";
-                    for (let i = 0; i < imageSets[index].length; i++) {
-                        const imageUrl = imageSets[index][i];
+                    for (let i = 0; i < 7; i++) {
+                        const imageUrl = imageSets[index][0];
                         thumbnailsContainer.innerHTML += `
                     <div class="thumbnail">
                         <img src="${imageUrl}" alt="Image ${
