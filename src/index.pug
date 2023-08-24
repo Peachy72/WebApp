@@ -57,6 +57,9 @@ head
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
+    link(rel="stylesheet", href="index.css")
+    script(src="index.js")
 body
     ul
         li
@@ -77,3 +80,22 @@ body
                 a(href=" labwork_1/task9.html") Task 9
                 a(href=" labwork_1/task10.html") Task 10
                 a(href=" labwork_1/task11.html") Task 11
+
+    // Slideshow container
+    .slideshow-container
+      // Full-width images with number and caption text
+      each slideNumber in [1, 2, 3]
+        .mySlides.fade
+            a(href="labwork_1/task1.html")
+                img(src="labs/lab1.png", style="width:100%")
+
+    // Next and previous buttons
+    a.prev(onclick="plusSlides(-1)") &#10094;
+    a.next(onclick="plusSlides(1)") &#10095;
+
+    br
+
+    // The dots/circles
+    div(style="text-align:center")
+      each dotNumber in [1, 2, 3]
+        span.dot(onclick=`currentSlide(${dotNumber})`)
