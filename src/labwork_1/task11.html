@@ -143,3 +143,32 @@
 </div>
 
 <div id="copyright">Copyright</div>
+
+<script>
+    const categoryLinks = document.querySelectorAll(".category");
+    const thumbnailsContainer = document.getElementById("thumbnails");
+
+    const imageSets = [["img_lab1/cat.jpeg"], ["img_lab1/dog.jpeg"], ["img_lab1/food.jpeg"]];
+
+    categoryLinks.forEach((link, index) => {
+        link.addEventListener("click", () => {
+            thumbnailsContainer.innerHTML = "";
+            for (let i = 0; i < 8; i++) {
+                const imageUrl = imageSets[index][0];
+                thumbnailsContainer.innerHTML += `
+                    <div class="thumbnail">
+                        <img src="${imageUrl}" alt="Image ${
+                            i + 1
+                        }" onclick="openImage('${imageUrl}')">
+                    </div>
+                `;
+            }
+        });
+    });
+
+    function openImage(imageUrl) {
+        window.open(imageUrl, "Image Pop-up", "width=800,height=600,resizable=yes,scrollbars=yes");
+    }
+
+    document.querySelector(".category").click();
+</script>
