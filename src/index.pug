@@ -83,11 +83,11 @@ body
 
     // Slideshow container
     .slideshow-container
-      // Full-width images with number and caption text
-      each slideNumber in [1, 2, 3]
-        .mySlides.fade
-            a(href="labwork_1/task1.html")
-                img(src="labs/lab1.png", style="width:100%")
+        // Full-width images with number and caption text
+        each slideNumber in [1, 2, 3]
+            .mySlides.fade
+                a(href="labwork_1/task1.html")
+                    img(src="labs/lab1.png", style="width: 100%")
 
     // Next and previous buttons
     a.prev(onclick="plusSlides(-1)") &#10094;
@@ -96,6 +96,11 @@ body
     br
 
     // The dots/circles
-    div(style="text-align:center")
-      each dotNumber in [1, 2, 3]
-        span.dot(onclick=`currentSlide(${dotNumber})`)
+    div(style="text-align: center")
+        each dotNumber in [1, 2, 3]
+            span.dot(onclick=`currentSlide(${dotNumber})`)
+
+    script.
+        document.addEventListener("DOMContentLoaded", function (event) {
+            document.querySelector(".active").click();
+        });
