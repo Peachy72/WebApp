@@ -21,7 +21,7 @@ enum PrinterEventType {
 }
 
 const helper = {
-    norm: (in_path: string) => path.normalize(in_path.replace(/\\/g, "/")),
+    norm: (in_path: string) => path.normalize(in_path).replace(/\\/g, "/"),
     listFiles: (
         dir: string,
         ignored_extensions: string[] = [],
@@ -88,8 +88,8 @@ const helper = {
         src = helper.norm(src);
         dest = helper.norm(dest);
         if (dest.split("/").length > 2) {
-            const subfolder = dest.slice(0, dest.lastIndexOf("/"));
-            if (!fs.existsSync(subfolder)) fs.mkdirSync(subfolder);
+            const subfolder = helper.norm(dest.slice(0, dest.lastIndexOf("/")));
+            if (!fs.existsSync(subfolder)) fs.mkdirSync(subfolder, { recursive: true });
         }
         fs.copyFileSync(src, dest);
     },
@@ -111,8 +111,9 @@ const builder = {
     },
     __build_copy_all: () => {
         for (let file of helper.listFiles(env.srcDir, ["pug"])) {
+            file = helper.norm(file);
             helper.printMsg(
-                `Copying ${file} to ${env.distDir}`,
+                `Copying ${helper.norm(path.join(env.srcDir, file))} to ${helper.norm(path.join(env.distDir, file))}`,
                 PrinterEventType.NORMAL,
             );
             helper.customCopy(
@@ -165,10 +166,10 @@ const watcher = {
     },
     watch: () => {
         const choki_watcher = chokidar.watch(env.srcDir);
-        choki_watcher.on("add", (path) => watcher.__add_change_action(path));
-        choki_watcher.on("change", (path) => watcher.__add_change_action(path));
-        choki_watcher.on("unlink", (path) => watcher.__remove_action(path));
-        choki_watcher.on("addDir", (path) => watcher.__new_dir_action(path));
+        choki_watcher.on("add", (path) => watcher.__add_change_action(helper.norm(path)));
+        choki_watcher.on("change", (path) => watcher.__add_change_action(helper.norm(path)));
+        choki_watcher.on("unlink", (path) => watcher.__remove_action(helper.norm(path)));
+        choki_watcher.on("addDir", (path) => watcher.__new_dir_action(helper.norm(path)));
     },
 };
 
