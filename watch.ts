@@ -142,7 +142,10 @@ const watcher = {
                 )}`,
                 PrinterEventType.NORMAL,
             );
-            builder.build_pug(path, path.replace(env.srcDir, env.distDir));
+            builder.build_pug(
+                path,
+                path.replace(env.srcDir, env.distDir).replace(".pug", ".html"),
+            );
         } else {
             const dist_path = path.replace(env.srcDir, env.distDir);
             helper.printMsg(
