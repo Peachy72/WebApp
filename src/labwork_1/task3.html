@@ -1,173 +1,36 @@
-<!doctype html>
-<html>
-    <head>
-        <style>
-            body {
-                background-color: #f3fde8;
-                margin: 0;
-            }
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        padding: 10px;
+        text-align: center;
+    }
 
-            ul {
-                background-color: #a8df8e;
-                list-style-type: none;
-                margin: 0;
-                overflow: hidden;
-                padding: 0;
-            }
-
-            li {
-                float: left;
-            }
-
-            li a,
-            .dropbtn {
-                color: #f3fde8;
-                display: inline-block;
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
-                font-size: 20px;
-                padding: 14px 16px;
-                text-align: center;
-                text-decoration: none;
-            }
-
-            li.dropdown {
-                display: inline-block;
-            }
-
-            .dropdown-content {
-                background-color: #ffe5e5;
-                box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%);
-                display: none;
-                min-width: 160px;
-                position: absolute;
-                z-index: 1;
-            }
-
-            .dropdown-content a {
-                color: black;
-                display: block;
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
-                padding: 12px 16px;
-                text-align: left;
-                text-decoration: none;
-            }
-
-            li a:hover,
-            .dropdown:hover .dropbtn {
-                background-color: #ffbfbf;
-            }
-
-            .dropdown-content a:hover {
-                background-color: #f1f1f1;
-            }
-
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-
-            table,
-            th,
-            td {
-                border: 1px solid black;
-                border-collapse: collapse;
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
-                padding: 10px;
-                text-align: center;
-            }
-
-            table {
-                left: 50%;
-                position: absolute;
-                top: 50%;
-                transform: translate(-50%, -50%);
-            }
-        </style>
-        <title>Task 3</title>
-    </head>
-
-    <body>
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../about.html">About</a></li>
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropbtn">Labwork 1</a>
-                <div class="dropdown-content">
-                    <a href="task1.html">Task 1</a>
-                    <a href="task2.html">Task 2</a>
-                    <a href="task3.html">Task 3</a>
-                    <a href="task4.html">Task 4</a>
-                    <a href="task5.html">Task 5</a>
-                    <a href="task6.html">Task 6</a>
-                    <a href="task7.html">Task 7</a>
-                    <a href="task8.html">Task 8</a>
-                    <a href="task9.html">Task 9</a>
-                    <a href="task10.html">Task 10</a>
-                    <a href="task11.html">Task 11</a>
-                </div>
-            </li>
-        </ul>
-
-        <div
-            style="
-                width: 90%;
-                height: 600px;
-                background-color: white;
-                margin: auto;
-                margin-top: 20px;
-            "
-        >
-            <table>
-                <tr>
-                    <th>Image 1</th>
-                    <th>Image 2</th>
-                    <th>Image 3</th>
-                </tr>
-                <tr>
-                    <td>
-                        <img
-                            src="img_lab1/img1.jpeg"
-                            alt="image 1"
-                            width="50"
-                            height="50"
-                        />
-                    </td>
-                    <td>
-                        <img
-                            src="img_lab1/img2.jpeg"
-                            alt="image 2"
-                            width="50"
-                            height="50"
-                        />
-                    </td>
-                    <td>
-                        <img
-                            src="img_lab1/img3.jpeg"
-                            alt="image 3"
-                            width="50"
-                            height="50"
-                        />
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div style="text-align: center">
-            <h2
-                style="
-                    font-family: Verdana, Geneva, Tahoma, sans-serif;
-                    font-size: 20px;
-                    font-weight: 100;
-                "
-            >
-                Task 3
-            </h2>
-            <a style="float: right" href="task4.html"
-                ><img
-                    src="https://img.icons8.com/ios/50/000000/circled-chevron-right.png"
-            /></a>
-            <a style="float: left" ; href="task2.html"
-                ><img
-                    src="https://img.icons8.com/ios/50/000000/circled-chevron-left.png"
-            /></a>
-        </div>
-    </body>
-</html>
+    table {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<table>
+    <tr>
+        <th>Image 1</th>
+        <th>Image 2</th>
+        <th>Image 3</th>
+    </tr>
+    <tr>
+        <td>
+            <img src="img_lab1/img1.jpeg" alt="image 1" width="50" height="50" />
+        </td>
+        <td>
+            <img src="img_lab1/img2.jpeg" alt="image 2" width="50" height="50" />
+        </td>
+        <td>
+            <img src="img_lab1/img3.jpeg" alt="image 3" width="50" height="50" />
+        </td>
+    </tr>
+</table>
