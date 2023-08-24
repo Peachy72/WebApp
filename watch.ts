@@ -89,7 +89,8 @@ const helper = {
         dest = helper.norm(dest);
         if (dest.split("/").length > 2) {
             const subfolder = helper.norm(dest.slice(0, dest.lastIndexOf("/")));
-            if (!fs.existsSync(subfolder)) fs.mkdirSync(subfolder, { recursive: true });
+            if (!fs.existsSync(subfolder))
+                fs.mkdirSync(subfolder, { recursive: true });
         }
         fs.copyFileSync(src, dest);
     },
@@ -113,7 +114,9 @@ const builder = {
         for (let file of helper.listFiles(env.srcDir, ["pug"])) {
             file = helper.norm(file);
             helper.printMsg(
-                `Copying ${helper.norm(path.join(env.srcDir, file))} to ${helper.norm(path.join(env.distDir, file))}`,
+                `Copying ${helper.norm(
+                    path.join(env.srcDir, file),
+                )} to ${helper.norm(path.join(env.distDir, file))}`,
                 PrinterEventType.NORMAL,
             );
             helper.customCopy(
@@ -166,10 +169,18 @@ const watcher = {
     },
     watch: () => {
         const choki_watcher = chokidar.watch(env.srcDir);
-        choki_watcher.on("add", (path) => watcher.__add_change_action(helper.norm(path)));
-        choki_watcher.on("change", (path) => watcher.__add_change_action(helper.norm(path)));
-        choki_watcher.on("unlink", (path) => watcher.__remove_action(helper.norm(path)));
-        choki_watcher.on("addDir", (path) => watcher.__new_dir_action(helper.norm(path)));
+        choki_watcher.on("add", (path) =>
+            watcher.__add_change_action(helper.norm(path)),
+        );
+        choki_watcher.on("change", (path) =>
+            watcher.__add_change_action(helper.norm(path)),
+        );
+        choki_watcher.on("unlink", (path) =>
+            watcher.__remove_action(helper.norm(path)),
+        );
+        choki_watcher.on("addDir", (path) =>
+            watcher.__new_dir_action(helper.norm(path)),
+        );
     },
 };
 
