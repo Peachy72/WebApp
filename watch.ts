@@ -137,7 +137,7 @@ const builder = {
     __compose_tasks_in_nav: (labwork: string, task_urls: string[]) => {
         return task_urls
             .map((task, index) => {
-                return `<a href="${task.replace(`src/${labwork}/`, "")}">${index + 1}</a>`;
+                return `<a href="${task.replace(`src/${labwork}/`, "")}">Task ${index + 1}</a>`;
             })
             .join("");
     },
