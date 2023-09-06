@@ -184,7 +184,7 @@ const builder = {
                         },
                         prev_task_btn: () => {
                             if (index == 0) return "";
-                            const prev_task = tasks[index - 1].replace(`src/${labwork}/`, "");
+                            const prev_task = tasks[index - 1].replace("src", "..");
                             return `
                                 <a href="${prev_task}" class="prev-task-btn">
                                     <img src="https://img.icons8.com/ios/50/000000/circled-chevron-left.png">
@@ -192,7 +192,7 @@ const builder = {
                         },
                         next_task_btn: () => {
                             if (index == tasks.length - 1) return "";
-                            const next_task = tasks[index + 1].replace(`src/${labwork}/`, "");
+                            const next_task = tasks[index + 1].replace("src", "..");
                             return `
                                 <a href="${next_task}" class="next-task-btn">
                                     <img src="https://img.icons8.com/ios/50/000000/circled-chevron-right.png">
