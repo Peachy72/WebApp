@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 9</title>
+
+</head>
+
+<body>
+    <h1>Heading1</h1>
+    <h2>Heading2</h2>
+    <p>Paragraph</p>
+    <button>CLICK ME</button>
+    <div id="log"></div>
+</body>
+
+</html>
+
+<script>
+    let text = document.getElementById("log").innerText;
+    var first_click, second_click, milliseconds;
+    var clicks = 0;
+    if (text == "") {
+        document.getElementsByTagName("button")[0].addEventListener("click", function () {
+            clicks++;
+            if (clicks == 1) {
+                first_click = new Date().getTime();
+                document.getElementById("log").innerText = "First click: " + first_click + "\nClick again to get the time difference";
+            } else if (clicks == 2) {
+                second_click = new Date().getTime();
+                milliseconds = second_click - first_click;
+                document.getElementById("log").innerText = "First click: " + first_click + "\nSecond click: " + second_click + "\nMilliseconds: " + milliseconds + "\nSeconds: " + milliseconds / 1000;
+                clicks = 0;
+            }
+        });
+    }
+
+</script>
