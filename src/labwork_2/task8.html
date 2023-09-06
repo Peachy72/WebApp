@@ -1,0 +1,10 @@
+<input type="text" onblur="blurEventField1()" />
+<input type="text" onblur="blurEventField2()" />
+<div class="noti"></div>
+
+<script>
+    const blurEventField1 = () =>
+        (document.querySelector(".noti").innerHTML = "Field1 loses focus");
+    const blurEventField2 = () =>
+        (document.querySelector(".noti").innerHTML = "Field2 loses focus");
+</script>

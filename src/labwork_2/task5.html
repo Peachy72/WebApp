@@ -1,0 +1,34 @@
+<div class="container">
+    <div>1st number: <input type="number" id="firstNumber" /></div>
+    <div>2nd number: <input type="number" id="secondNumber" /></div>
+    <div class="action">
+        <button id="multyply">Multiply</button>
+        <button id="divide">Divide</button>
+    </div>
+    <div id="result">The result is: <span></span></div>
+</div>
+
+<style>
+    .container {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem 1.2rem;
+        height: 100%;
+        justify-content: center;
+    }
+</style>
+
+<script>
+    const firstNumber = document.getElementById("firstNumber");
+    const secondNumber = document.getElementById("secondNumber");
+    const multyply = document.getElementById("multyply");
+    const divide = document.getElementById("divide");
+    const result = document.querySelector("#result span");
+    multyply.addEventListener("click", () => {
+        result.textContent = firstNumber.value * secondNumber.value;
+    });
+    divide.addEventListener("click", () => {
+        result.textContent = firstNumber.value / secondNumber.value;
+    });
+</script>
