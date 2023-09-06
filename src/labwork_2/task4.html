@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="username" size="30" maxlength="30" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password" size="30" maxlength="30" /></td>
+            </tr>
+            <tr>
+                <td>Confirm Password:</td>
+                <td><input type="password" name="confirm_password" size="30" maxlength="30" /></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="submit" value="Submit" /></td>
+                <td><input type="reset" name="reset" value="Reset" /></td>
+            </tr>
+        </table>
+
+</body>
+<script>
+    var username = document.getElementsByName("username")[0];
+    var password = document.getElementsByName("password")[0];
+    var confirm_password = document.getElementsByName("confirm_password")[0];
+    var submit = document.getElementsByName("submit")[0];
+    var reset = document.getElementsByName("reset")[0];
+
+    submit.addEventListener("click", function(){
+        if(username.value == "" || password.value == "" || confirm_password.value == ""){
+            alert("Please fill in all fields");
+        }
+        else if(password.value != confirm_password.value){
+            alert("Passwords do not match");
+        }
+        else{
+            alert("Sign up successful");
+        }
+    });
+
+    reset.addEventListener("click", function(){
+        username.value = "";
+        password.value = "";
+        confirm_password.value = "";
+    });
+</script>

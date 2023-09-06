@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<p>Old Link: <a href="http://www.usth.edu.vn/" id="usth">USTH Website</a></p>
+<button id="change">Change</button>
+
+<script>
+$("#change").on("click", function(){
+  $("#usth").attr("href", "https://www.youtube.com").text("New Website");
+});
+</script>
+
+</body>
+</html>
