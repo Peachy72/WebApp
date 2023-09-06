@@ -45,6 +45,16 @@ html(lang="en")
                 padding: 0px;
                 display: absolute;
             }
+
+            .container {
+                max-width: 700px;
+                padding-right: 15px;
+            }
+
+
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")
+
+
     body
         #header
             a(href="index.html")
@@ -53,7 +63,53 @@ html(lang="en")
                 )
             h1 About Us
         #content
-            h1 Group Members
-            p 1. Dao Tuyet Ngan BI12-311
-            p 2. Ho Minh Quang BI12-370
-            p 3. Nguyen The Kien BI12-225
+            .container 
+                ul.nav.nav-tabs
+                    li.active
+                        a(data-toggle="tab", href="#about") About
+                    li
+                        a(data-toggle="tab", href="#group-members") Group Members
+                    li
+                        a(data-toggle="tab", href="#education") Education
+                    li
+                        a(data-toggle="tab", href="#skills") Skills
+                    li
+                        a(data-toggle="tab", href="#languages") Languages
+                .tab-content
+                    #about.tab-pane.fade.active.in
+                        h1 About
+                        p This is a website for our project in Web Development course. We are a group of 3 students from University of Science and Technology of Hanoi. We are currently in our 3rd year of studying Information and Communication Technology. This website is made using Pug, Bootstrap, and JQuery.
+                    #group-members.tab-pane.fade
+                        h1 Group Members
+                        p 1. Dao Tuyet Ngan BI12-311
+                        p 2. Ho Minh Quang BI12-370
+                        p 3. Nguyen The Kien BI12-225
+                    #education.tab-pane.fade
+                        h1 Education
+                        p 1. University of Science and Techonology of Hanoi
+                        p 2. Somewhere in Hanoi
+                    #skills.tab-pane.fade
+                        h1 Skills
+                        p 1. Python
+                            .progress 
+                                .progress-bar(style="width: 50%; background-color: #FFBFBF;") 50%
+                        p 2. C/C++
+                            .progress
+                                .progress-bar(style="width: 70%; background-color: #FFBFBF;") 70%
+                        p 3. Java
+                            .progress
+                                .progress-bar(style="width: 30%; background-color: #FFBFBF;") 30%
+                    #languages.tab-pane.fade
+                        h1 Languages
+                        p 1. Vietnamese
+                            .progress
+                                .progress-bar(style="width: 100%; background-color: #A8DF8E;") 100%
+                        p 2. English
+                            .progress
+                                .progress-bar(style="width: 80%; background-color: #A8DF8E;") 80%
+                        p 3. French 
+                            .progress
+                                .progress-bar(style="width: 45%; background-color: #A8DF8E;") 45%
+
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
