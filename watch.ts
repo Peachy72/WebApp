@@ -177,7 +177,11 @@ const builder = {
                     filters: {
                         "labwork-nav": () => builder.__filter_compose_nav(allLabworkFile),
                         "labwork-container": () => fs.readFileSync(task, "utf-8"),
-                        task_number: () => `<h2>Task ${index + 1}</h2>`,
+                        task_number: () => {
+                            const task_number = task.match(/task(\d+)\.html/);
+                            const str_task_number = task_number ? task_number[1] : "";
+                            return `<h2>Task ${str_task_number}</h2>`;
+                        },
                         prev_task_btn: () => {
                             if (index == 0) return "";
                             const prev_task = tasks[index - 1].replace(`src/${labwork}/`, "");
