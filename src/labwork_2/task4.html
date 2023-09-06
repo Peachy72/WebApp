@@ -34,10 +34,10 @@
     var reset = document.getElementsByName("reset")[0];
 
     submit.addEventListener("click", function(){
-        if(username.value == "" || password.value == "" || confirm_password.value == ""){
+        if(username.value === "" || password.value === "" || confirm_password.value == ""){
             alert("Please fill in all fields");
         }
-        else if(password.value != confirm_password.value){
+        else if(password.value !== confirm_password.value){
             alert("Passwords do not match");
         }
         else{
