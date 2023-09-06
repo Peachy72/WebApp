@@ -136,20 +136,34 @@ const helper = {
 const builder = {
     __compose_tasks_in_nav: (labwork: string, task_urls: string[]) => {
         return task_urls
-            .map((task, index) => {
-                return `<a href="${task.replace(`src/${labwork}/`, "")}">Task ${index + 1}</a>`;
+            .map((task, _) => {
+                const task_url = task.replace("src", "..");
+                const task_text = task.replace(`src/${labwork}/task`, "").replace(".html", "");
+                return `
+                    <li>
+                        <a class="dropdown-item" href="${task_url}">Task ${task_text}</a>
+                    </li>
+                `;
             })
             .join("");
     },
     __filter_compose_nav: (allLabworkFile: { [key: string]: string[] }) => {
         return Object.entries(allLabworkFile)
             .map(([labwork, tasks]) => {
+                const labwork_text = labwork.replace(/labwork_(\d+)/, "Labwork $1");
                 return `
-                <a class="dropbtn">${labwork.replace(/labwork_(\d+)/, "Labwork $1")}</a>
-                <div class="dropdown-content">
-                    ${builder.__compose_tasks_in_nav(labwork, tasks)}
-                </div>
-            `;
+                    <li class="dropdown">
+                        <button
+                            class="btn dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >${labwork_text}</button>
+                        <ul class="dropdown-menu">
+                            ${builder.__compose_tasks_in_nav(labwork, tasks)}
+                        </ul>
+                    </li>
+                `;
             })
             .join("\n");
     },
@@ -161,10 +175,7 @@ const builder = {
             tasks.forEach((task, index) => {
                 let html = pug.compileFile(env.labworkPugBaseFile, {
                     filters: {
-                        "labwork-nav": () =>
-                            `<li class="dropdown">${builder.__filter_compose_nav(
-                                allLabworkFile,
-                            )}</li>`,
+                        "labwork-nav": () => builder.__filter_compose_nav(allLabworkFile),
                         "labwork-container": () => fs.readFileSync(task, "utf-8"),
                         task_number: () => `<h2>Task ${index + 1}</h2>`,
                         prev_task_btn: () => {
