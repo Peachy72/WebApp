@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 9</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Available Users</h1>
+    <button onclick="listUsers()">List All Users</button>
+    <div id="userList"></div>
+
+    <h1>Detail info of a user profile</h1>
+    <p>Press "Get User Profile" to get all profiles or insert an User ID for that user profile</p>
+    <input type="text" id="userId" placeholder="User ID">
+    <button onclick="getUserProfile()">Get User Profile</button>
+    <div id="userProfile"></div>
+
+    <h1>All posts for a specific user</h1>
+    <input type="text" id="userPostsId" placeholder="User ID">
+    <button onclick="listUserPosts()">List User Posts</button>
+    <div id="userPosts"></div>
+
+    <h1>Available Posts</h1>
+    <button onclick="listPosts()">List Posts</button>
+    <div id="postList"></div>
+
+    <h1>All comments for a specific post</h1>
+    <input type="text" id="postId" placeholder="Post ID">
+    <button onclick="listPostComments()">List Post's Comments</button>
+    <div id="postComments"></div>
+
+    <script>
+        const API_KEY = '6511d0d9665d4e24b0db0be9';
+
+        async function fetchData(url) {
+            const response = await fetch(url, {
+                headers: {
+                    'app-id': API_KEY
+                }
+            });
+            return await response.json();
+        }
+
+        async function listUsers() {
+            const users = await fetchData('https://dummyapi.io/data/v1/user?limit=10');
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '<table border="1"><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Picture</th></tr>' + users.data.map(user => `<tr><td>${user.id}</td><td>${user.firstName}</td><td>${user.lastName}</td><td><img src="${user.picture}" width="100" height="100"></td></tr>`).join('') + '</table>';
+        }
+
+        async function getUserProfile() {
+            const userId = document.getElementById('userId').value;
+            const user = await fetchData(`https://dummyapi.io/data/v1/user/${userId}`);
+            const userProfile = document.getElementById('userProfile');
+            userProfile.innerHTML = `<pre>${JSON.stringify(user, null, 2)}</pre>`;
+        }
+
+        async function listUserPosts() {
+            const userId = document.getElementById('userPostsId').value;
+            const posts = await fetchData(`https://dummyapi.io/data/v1/user/${userId}/post`);
+            const userPosts = document.getElementById('userPosts');
+            userPosts.innerHTML = '<ul>' + posts.data.map(post => `<li>ID: ${post.id}, Text: ${post.text}</li>`).join('') + '</ul>';
+        }
+
+        async function listPosts() {
+            const posts = await fetchData('https://dummyapi.io/data/v1/post');
+            const postList = document.getElementById('postList');
+            postList.innerHTML = '<ul>' + posts.data.map(post => `<li>ID: ${post.id}, Text: ${post.text}</li>`).join('') + '</ul>';
+        }
+
+        async function listPostComments() {
+            const postId = document.getElementById('postId').value;
+            const comments = await fetchData(`https://dummyapi.io/data/v1/post/${postId}/comment`);
+            const postComments = document.getElementById('postComments');
+            postComments.innerHTML = '<ul>' + comments.data.map(comment => `<li>${comment.message}</li>`).join('') + '</ul>';
+        }
+    </script>
+</body>
+</html>
