@@ -1,10 +1,12 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "labwork_3");
+$dbname = "labwork_3";
+$conn = mysqli_connect("localhost", "root", "", $dbname);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 } else {
     echo "MySQL connected successfully!<br>";
+    echo "Database '$dbname' selected successfully!<br>";
 }
 
 $sql_best_students = "SELECT * FROM students WHERE Mark > 75";
